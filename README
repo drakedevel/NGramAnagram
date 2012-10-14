@@ -1,0 +1,16 @@
+Best used with the Hadoop 1.0.x branch.
+
+Usage: hadoop jar <jarfile> <ngramdir> <outdir> <phrase>
+
+You'll need some amount of the Google n-gram dataset (from
+http://books.google.com/ngrams/datasets ) in <ngramdir> and <outdir>
+cannot already exist. All paths are of course in HDFS.
+
+If you use the included Eclipse bits, you'll need to point Eclipse at the
+Hadoop jars, and you'll want to modify the included jardesc to dump the jar
+somewhere other than my home directory.
+
+Output is a bunch of tab-separated values with anagrams and their frequencies.
+If you really need to sort the output, you can use something like:
+
+hadoop fs -cat <outdir>/part-* | sort -t"<tab char>" -k2
